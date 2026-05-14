@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandhan Design · Webdesign für Coaches & Therapeuten</title>
+  <meta name="description" content="Professionelle Websites für Coaches, Therapeuten und Heilpraktiker. Festpreis, DSGVO-sicher, in einer Woche online. Mit monatlicher Wartung." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ================================
+       RESET & BASE
+    ================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { border: none; background: none; cursor: pointer; font: inherit; }
+
+    /* ================================
+       TOKENS
+    ================================ */
+    :root {
+      --bg:            oklch(94.5% 0.018 76);
+      --bg-alt:        oklch(89.8% 0.026 73);
+      --bg-dark:       oklch(18% 0.030 42);
+      --bg-dark-soft:  oklch(23% 0.026 42);
+
+      --text:          oklch(17% 0.025 46);
+      --text-muted:    oklch(48% 0.022 52);
+      --text-light:    oklch(65% 0.016 58);
+
+      --accent:        oklch(55% 0.155 38);
+      --accent-dark:   oklch(48% 0.155 38);
+      --accent-soft:   oklch(93% 0.028 70);
+
+      --border:        oklch(85% 0.022 73);
+      --border-strong: oklch(74% 0.028 68);
+
+      --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+      --s5:24px; --s6:32px; --s7:48px; --s8:64px;
+      --s9:96px; --s10:128px;
+
+      --f-display: 'Bricolage Grotesque', sans-serif;
+      --f-body:    'Mulish', sans-serif;
+
+      --r:6px; --r-lg:14px; --r-xl:22px;
+      --t: 200ms ease;
+    }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ================================
+       TYPOGRAPHY HELPERS
+    ================================ */
+    .display {
+      font-family: var(--f-display);
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+    }
+    .heading-lg {
+      font-family: var(--f-display);
+      font-size: clamp(1.75rem, 3vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+    .label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .divider {
+      width: 36px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: var(--s4) 0;
+    }
+
+    /* ================================
+       LAYOUT
+    ================================ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 var(--s6);
+    }
+    section { padding: var(--s9) 0; }
+
+    /* ================================
+       BUTTONS
+    ================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: 11px var(--s6);
+      border-radius: 100px;
+      font-family: var(--f-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: background var(--t), border-color var(--t), transform var(--t);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--accent); color: oklch(97% 0.010 72); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-ghost { border: 1.5px solid var(--border-strong); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--text-muted); background: var(--bg-alt); }
+
+    /* ================================
+       NAV
+    ================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: oklch(94.5% 0.018 76 / 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: var(--s3) 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s5);
+    }
+    .nav-logo {
+      font-family: var(--f-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--s7);
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--t);
+    }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ================================
+       HERO
+    ================================ */
+    #hero {
+      padding: var(--s10) 0 var(--s9);
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--s8);
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      margin-bottom: var(--s5);
+    }
+    .hero-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+    .hero-title { margin-bottom: var(--s5); }
+    .hero-sub {
+      max-width: 42ch;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      margin-bottom: var(--s7);
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--s4);
+      flex-wrap: wrap;
+    }
+    .hero-trust {
+      margin-top: var(--s7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s5);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .trust-item svg { color: var(--accent); flex-shrink: 0; }
+
+    /* Hero card */
+    .hero-card {
+      background: var(--bg-dark);
+      border-radius: var(--r-xl);
+      padding: var(--s7);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: oklch(55% 0.155 38 / 0.12);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .hero-card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--s5);
+    }
+    .hero-card-title {
+      font-family: var(--f-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: oklch(95% 0.010 70);
+      margin-bottom: var(--s5);
+    }
+    .hero-card-list { display: flex; flex-direction: column; gap: var(--s3); }
+    .hero-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s3);
+      font-size: 0.86rem;
+      color: oklch(72% 0.016 62);
+      line-height: 1.45;
+    }
+    .hero-card-item svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .hero-card-price {
+      margin-top: var(--s6);
+      padding-top: var(--s5);
+      border-top: 1px solid oklch(28% 0.024 42);
+      display: flex;
+      align-items: baseline;
+      gap: var(--s2);
+    }
+    .hero-card-price strong {
+      font-family: var(--f-display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: oklch(95% 0.010 70);
+    }
+    .hero-card-price span { font-size: 0.8rem; color: oklch(52% 0.018 58); }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+    }
+
+    /* ================================
+       ÜBER MICH
+    ================================ */
+    #ueber { background: var(--bg-alt); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s8);
+      align-items: center;
+    }
+    .about-text .label { margin-bottom: var(--s4); }
+    .about-text h2 { margin-bottom: var(--s5); }
+    .about-text p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: var(--s4); }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s4);
+    }
+    .stat-block {
+      padding: var(--s5);
+      background: var(--bg);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+    }
+    .stat-number {
+      font-family: var(--f-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* ================================
+       PAKETE
+    ================================ */
+    #pakete { padding-bottom: var(--s10); }
+    .packages-header {
+      text-align: center;
+      margin-bottom: var(--s8);
+    }
+    .packages-header .label { margin-bottom: var(--s4); }
+    .packages-header .divider { margin: var(--s4) auto; }
+    .packages-header h2 { margin-bottom: var(--s4); }
+    .packages-header p {
+      color: var(--text-muted);
+      max-width: 48ch;
+      margin: 0 auto;
+      font-size: 1.03rem;
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr 1fr;
+      gap: var(--s4);
+      align-items: start;
+    }
+
+    /* Base card */
+    .pkg {
+      border-radius: var(--r-xl);
+      padding: var(--s6);
+      position: relative;
+    }
+    .pkg-klar {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+    }
+    .pkg-wirkung {
+      background: var(--bg-dark);
+      padding: calc(var(--s6) + 8px) var(--s6);
+      box-shadow: 0 20px 60px oklch(18% 0.030 42 / 0.20);
+    }
+    .pkg-praxis {
+      background: var(--accent-soft);
+      border: 1.5px solid oklch(86% 0.038 68);
+    }
+
+    .pkg-badge {
+      display: inline-block;
+      padding: 3px var(--s3);
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: oklch(97% 0.010 72);
+      margin-bottom: var(--s4);
+    }
+
+    .pkg-name {
+      font-family: var(--f-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1;
+      margin-bottom: var(--s2);
+    }
+    .pkg-klar   .pkg-name { color: var(--text); }
+    .pkg-wirkung .pkg-name { color: oklch(96% 0.010 70); }
+    .pkg-praxis .pkg-name { color: var(--text); }
+
+    .pkg-tagline {
+      font-size: 0.84rem;
+      margin-bottom: var(--s5);
+    }
+    .pkg-klar   .pkg-tagline { color: var(--text-muted); }
+    .pkg-wirkung .pkg-tagline { color: oklch(60% 0.018 58); }
+    .pkg-praxis .pkg-tagline { color: var(--text-muted); }
+
+    .pkg-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s2);
+      margin-bottom: var(--s6);
+      padding-bottom: var(--s5);
+    }
+    .pkg-klar   .pkg-price { border-bottom: 1px solid var(--border); }
+    .pkg-wirkung .pkg-price { border-bottom: 1px solid oklch(28% 0.024 42); }
+    .pkg-praxis .pkg-price { border-bottom: 1px solid oklch(83% 0.038 68); }
+
+    .pkg-amount {
+      font-family: var(--f-display);
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .pkg-klar   .pkg-amount { color: var(--text); }
+    .pkg-wirkung .pkg-amount { color: oklch(97% 0.010 70); }
+    .pkg-praxis .pkg-amount { color: var(--accent-dark); }
+
+    .pkg-currency {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .pkg-klar   .pkg-currency { color: var(--text-muted); }
+    .pkg-wirkung .pkg-currency { color: oklch(58% 0.018 58); }
+    .pkg-praxis .pkg-currency { color: var(--text-muted); }
+
+    .pkg-features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s3);
+      margin-bottom: var(--s6);
+    }
+    .pkg-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s3);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+    .pkg-klar   .pkg-feature { color: var(--text-muted); }
+    .pkg-wirkung .pkg-feature { color: oklch(72% 0.016 62); }
+    .pkg-praxis .pkg-feature { color: var(--text-muted); }
+
+    .pkg-icon {
+      width: 17px; height: 17px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pkg-klar   .pkg-icon { color: var(--accent); }
+    .pkg-wirkung .pkg-icon { color: var(--accent); }
+    .pkg-praxis .pkg-icon { color: var(--accent-dark); }
+
+    .pkg-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s3);
+      padding: var(--s4);
+      border-radius: var(--r);
+      margin-bottom: var(--s5);
+      font-size: 0.78rem;
+    }
+    .pkg-klar   .pkg-meta { background: var(--bg-alt); }
+    .pkg-wirkung .pkg-meta { background: oklch(24% 0.024 42); }
+    .pkg-praxis .pkg-meta { background: oklch(90% 0.030 68); }
+
+    .pkg-meta-item strong { display: block; font-weight: 700; margin-bottom: 2px; }
+    .pkg-klar   .pkg-meta-item strong { color: var(--text); }
+    .pkg-wirkung .pkg-meta-item strong { color: oklch(92% 0.012 68); }
+    .pkg-praxis .pkg-meta-item strong { color: var(--text); }
+
+    .pkg-klar   .pkg-meta-item span { color: var(--text-light); }
+    .pkg-wirkung .pkg-meta-item span { color: oklch(55% 0.018 58); }
+    .pkg-praxis .pkg-meta-item span { color: var(--text-muted); }
+
+    .pkg-cta {
+      width: 100%;
+      justify-content: center;
+      padding: var(--s3) var(--s5);
+      border-radius: var(--r-lg);
+    }
+    .pkg-klar .pkg-cta   { border: 1.5px solid var(--border-strong); color: var(--text); }
+    .pkg-klar .pkg-cta:hover { background: var(--bg-alt); }
+    .pkg-wirkung .pkg-cta { background: var(--accent); color: oklch(97% 0.010 72); }
+    .pkg-wirkung .pkg-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .pkg-praxis .pkg-cta  { background: var(--accent-dark); color: oklch(97% 0.010 72); }
+    .pkg-praxis .pkg-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+    .packages-note {
+      text-align: center;
+      margin-top: var(--s7);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .packages-note strong { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .packages-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .pkg-wirkung { padding: var(--s6); }
+    }
+
+    /* ================================
+       ABLAUF
+    ================================ */
+    #ablauf { background: var(--bg-alt); }
+    .process-header { margin-bottom: var(--s8); }
+    .process-header .label { margin-bottom: var(--s4); }
+    .process-header h2 { margin-bottom: var(--s4); max-width: 20ch; }
+    .process-header p { color: var(--text-muted); max-width: 44ch; font-size: 1.03rem; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s5);
+    }
+    .step-num {
+      font-family: var(--f-display);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--border);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: var(--s4);
+    }
+    .step h3 {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: var(--s3);
+      letter-spacing: -0.02em;
+    }
+    .step p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+
+    @media (max-width: 768px) { .process-steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .process-steps { grid-template-columns: 1fr; } }
+
+    /* ================================
+       KONTAKT
+    ================================ */
+    #kontakt {
+      background: var(--bg-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #kontakt::before {
+      content: '';
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: oklch(55% 0.155 38 / 0.08);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .contact-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s8);
+      align-items: center;
+    }
+    .contact-text .label { color: var(--accent); margin-bottom: var(--s4); }
+    .contact-text .divider { }
+    .contact-text h2 { color: oklch(96% 0.010 70); margin-bottom: var(--s4); }
+    .contact-text p { color: oklch(60% 0.018 58); font-size: 1.03rem; max-width: 40ch; }
+
+    .contact-actions { display: flex; flex-direction: column; gap: var(--s4); }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: var(--s4);
+      padding: var(--s5) var(--s5);
+      background: oklch(23% 0.024 42);
+      border-radius: var(--r-lg);
+      border: 1px solid oklch(30% 0.024 42);
+      transition: background var(--t), border-color var(--t);
+      width: 100%;
+    }
+    .contact-link:hover {
+      background: oklch(27% 0.024 42);
+      border-color: oklch(38% 0.022 42);
+    }
+    .contact-link-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--r);
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: oklch(97% 0.010 72);
+    }
+    .contact-link-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: oklch(92% 0.012 68);
+      margin-bottom: 2px;
+    }
+    .contact-link-text span { font-size: 0.78rem; color: oklch(52% 0.018 58); }
+
+    .contact-hints {
+      padding: var(--s5);
+      background: oklch(23% 0.024 42);
+      border-radius: var(--r-lg);
+      border: 1px solid oklch(30% 0.024 42);
+    }
+    .contact-hints p {
+      font-size: 0.78rem;
+      color: oklch(50% 0.018 58);
+      margin-bottom: var(--s3);
+    }
+    .contact-hints ul { display: flex; flex-direction: column; gap: var(--s2); }
+    .contact-hints li {
+      display: flex;
+      gap: var(--s2);
+      font-size: 0.84rem;
+      color: oklch(72% 0.016 62);
+    }
+    .contact-hints li span { color: var(--accent); }
+
+    @media (max-width: 768px) { .contact-inner { grid-template-columns: 1fr; } }
+
+    /* ================================
+       FOOTER
+    ================================ */
+    footer {
+      padding: var(--s5) 0;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s5);
+      flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-light); }
+    .footer-links { display: flex; gap: var(--s5); }
+    .footer-links button {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--f-body);
+      transition: color var(--t);
+    }
+    .footer-links button:hover { color: var(--text); text-decoration: underline; }
+
+    /* ================================
+       MODALS
+    ================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: oklch(10% 0.018 42 / 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--s5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 240ms ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal {
+      background: var(--bg);
+      border-radius: var(--r-xl);
+      max-width: 660px;
+      width: 100%;
+      max-height: 82vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 80px oklch(10% 0.018 42 / 0.3);
+      transform: translateY(18px) scale(0.99);
+      transition: transform 240ms ease;
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal-header {
+      padding: var(--s5) var(--s6);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .modal-title {
+      font-family: var(--f-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .modal-close {
+      width: 30px; height: 30px;
+      border-radius: var(--r);
+      background: var(--bg-alt);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      transition: background var(--t), color var(--t);
+    }
+    .modal-close:hover { background: var(--border); color: var(--text); }
+    .modal-body {
+      padding: var(--s6) var(--s7);
+      overflow-y: auto;
+      flex: 1;
+    }
+    .modal-body h3 {
+      font-family: var(--f-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-top: var(--s6);
+      margin-bottom: var(--s2);
+    }
+    .modal-body h3:first-child { margin-top: 0; }
+    .modal-body p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: var(--s3);
+    }
+    .modal-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .modal-stamp {
+      margin-top: var(--s5);
+      font-size: 0.76rem;
+      color: var(--text-light);
+    }
+
+    /* ================================
+       SCROLL ANIMATIONS
+    ================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 580ms ease, transform 580ms ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(2) { transition-delay: 80ms; }
+    .fade-up:nth-child(3) { transition-delay: 160ms; }
+    .fade-up:nth-child(4) { transition-delay: 240ms; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">Sandhan <span>Design</span></a>
+        <div class="nav-links">
+          <a href="#ueber">Über mich</a>
+          <a href="#pakete">Pakete</a>
+          <a href="#ablauf">Ablauf</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+        <a href="#kontakt" class="btn btn-primary">
+          Gespräch vereinbaren
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div>
+          <div class="hero-eyebrow">
+            <div class="hero-dot"></div>
+            <span class="label">Webdesign für Coaches &amp; Therapeuten</span>
+          </div>
+
+          <h1 class="display hero-title">
+            Ihre Website.<br>
+            In einer Woche.<br>
+            <span style="color:var(--accent)">DSGVO-sicher.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Ich baue klare, professionelle Websites für Coaches, Therapeuten und Heilpraktiker — zu Festpreisen, ohne versteckte Kosten, mit monatlicher Wartung. Damit Sie sich auf Ihre Klienten konzentrieren können.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#kontakt" class="btn btn-primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              Kostenloses Erstgespräch
+            </a>
+            <a href="#pakete" class="btn btn-ghost">Pakete ansehen</a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Festpreise
+            </div>
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              DSGVO-konform
+            </div>
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Wartung inklusive
+            </div>
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Keine Umsatzsteuer (§ 19 UStG)
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero card -->
+        <div class="hero-card">
+          <div class="hero-card-label">Beispiel · Paket Wirkung</div>
+          <div class="hero-card-title">Praxis für Systemische<br>Therapie &amp; Coaching</div>
+          <div class="hero-card-list">
+            <div class="hero-card-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              5 Seiten: Start · Über mich · Methoden · Termine · Blog
+            </div>
+            <div class="hero-card-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Newsletter-Anbindung &amp; Blog eingerichtet
+            </div>
+            <div class="hero-card-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Ausführliche DSGVO-Datenschutzerklärung &amp; Impressum
+            </div>
+            <div class="hero-card-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              6 Monate Wartung inklusive
+            </div>
+          </div>
+          <div class="hero-card-price">
+            <strong>2.490</strong>
+            <span>€ · Fertig in 10 Arbeitstagen</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ÜBER MICH ===== -->
+  <section id="ueber">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-text">
+          <span class="label">Über mich</span>
+          <div class="divider"></div>
+          <h2 class="heading-lg">Ich kenne Ihre Welt — und baue Websites, die dazu passen.</h2>
+          <p>Über 40 Jahre Erfahrung in Vertrieb, Therapie, Spiritualität und Beratung. Ich spreche Ihre Sprache, kenne Ihre Klientel und weiß, worauf es ankommt: Vertrauen schaffen, rechtssicher bleiben, nie wieder selbst basteln müssen.</p>
+          <p>Was ich mache: klare, schnelle, DSGVO-konforme Websites zum Festpreis — für Menschen, die sich auf ihr Kerngeschäft konzentrieren wollen.</p>
+          <a href="mailto:juwest@posteo.de" class="btn btn-ghost" style="margin-top:var(--s4)">
+            Schreiben Sie mir
+          </a>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-block fade-up">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Arbeitstage bis zur fertigen Website (Paket Klar)</div>
+          </div>
+          <div class="stat-block fade-up">
+            <div class="stat-number">3</div>
+            <div class="stat-label">klare Pakete — Festpreis, keine Überraschungen</div>
+          </div>
+          <div class="stat-block fade-up">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">DSGVO-konform — Impressum &amp; Datenschutz inklusive</div>
+          </div>
+          <div class="stat-block fade-up">
+            <div class="stat-number">0 €</div>
+            <div class="stat-label">versteckte Kosten — alles im Festpreis enthalten</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAKETE ===== -->
+  <section id="pakete">
+    <div class="container">
+
+      <div class="packages-header">
+        <span class="label">Leistungen &amp; Preise</span>
+        <div class="divider"></div>
+        <h2 class="heading-lg">Drei klare Pakete.<br>Keine Überraschungen.</h2>
+        <p>Festpreise sind nicht verhandelbar — das schützt Sie vor Scope-Creep und mich vor Mehrarbeit. Wer Stundenabrechnung will, ist nicht mein Kunde.</p>
+      </div>
+
+      <div class="packages-grid">
+
+        <!-- KLAR -->
+        <div class="pkg pkg-klar fade-up">
+          <div class="pkg-name">Klar</div>
+          <div class="pkg-tagline">Der klare Einstieg — in einer Woche online.</div>
+          <div class="pkg-price">
+            <span class="pkg-amount">1.490</span>
+            <span class="pkg-currency">€</span>
+          </div>
+          <ul class="pkg-features">
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              1 Seite (One-Pager): Wer · Was · Wie · Kontakt
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Bis zu 5 Sektionen (Hero, Über mich, Angebot, Stimmen, Kontakt)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Mobile-optimiert
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Kontaktformular mit DSGVO-Hinweis
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Impressum + Datenschutzerklärung
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Domain-Einrichtung + Hosting-Setup
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              1 Korrekturschleife
+            </li>
+          </ul>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">
+              <strong>5 Arbeitstage</strong>
+              <span>Lieferzeit</span>
+            </div>
+            <div class="pkg-meta-item">
+              <strong>3 Monate</strong>
+              <span>Wartung inkl.</span>
+            </div>
+            <div class="pkg-meta-item" style="grid-column:span 2">
+              <strong>49 €/Monat</strong>
+              <span>danach Wartungs-Abo</span>
+            </div>
+          </div>
+          <a href="mailto:juwest@posteo.de?subject=Anfrage%20Paket%20Klar" class="btn pkg-cta">Paket anfragen</a>
+        </div>
+
+        <!-- WIRKUNG (featured) -->
+        <div class="pkg pkg-wirkung fade-up">
+          <div class="pkg-badge">Meist gebucht</div>
+          <div class="pkg-name">Wirkung</div>
+          <div class="pkg-tagline">Mehr Tiefe, mehr Reichweite — mit Blog &amp; Newsletter.</div>
+          <div class="pkg-price">
+            <span class="pkg-amount">2.490</span>
+            <span class="pkg-currency">€</span>
+          </div>
+          <ul class="pkg-features">
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Bis zu 5 Unterseiten (Start, Über mich, Angebot, Termine, Blog)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Strukturiertes Texten-Onboarding (Fragebogen + Telefonat)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Blog-Funktion — Sie schreiben selbst
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Newsletter-Anbindung (z.B. Brevo, MailerLite)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Bildauswahl aus lizenzfreien Quellen + Aufbereitung
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Ausführliche Datenschutzerklärung &amp; Impressum
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              2 Korrekturschleifen
+            </li>
+          </ul>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">
+              <strong>10 Arbeitstage</strong>
+              <span>Lieferzeit</span>
+            </div>
+            <div class="pkg-meta-item">
+              <strong>6 Monate</strong>
+              <span>Wartung inkl.</span>
+            </div>
+            <div class="pkg-meta-item" style="grid-column:span 2">
+              <strong>69 €/Monat</strong>
+              <span>danach Wartungs-Abo</span>
+            </div>
+          </div>
+          <a href="mailto:juwest@posteo.de?subject=Anfrage%20Paket%20Wirkung" class="btn pkg-cta">Paket anfragen</a>
+        </div>
+
+        <!-- PRAXIS -->
+        <div class="pkg pkg-praxis fade-up">
+          <div class="pkg-name">Praxis</div>
+          <div class="pkg-tagline">Für Heilpraktiker — rechtssicher bis ins letzte Detail.</div>
+          <div class="pkg-price">
+            <span class="pkg-amount">3.890</span>
+            <span class="pkg-currency">€</span>
+          </div>
+          <ul class="pkg-features">
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Bis zu 8 Unterseiten + HWG-konformer Aufbau
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Terminbuchung (z.B. Calendly, TerminApp)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Bewertungs-Integration (z.B. ProvenExpert)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Cookie-Banner (Real Cookie Banner)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Erweiterte Datenschutzerklärung (Art. 9 DSGVO, Gesundheitsdaten)
+            </li>
+            <li class="pkg-feature">
+              <svg class="pkg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              3 Korrekturschleifen
+            </li>
+          </ul>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">
+              <strong>15 Arbeitstage</strong>
+              <span>Lieferzeit</span>
+            </div>
+            <div class="pkg-meta-item">
+              <strong>12 Monate</strong>
+              <span>Wartung inkl.</span>
+            </div>
+            <div class="pkg-meta-item" style="grid-column:span 2">
+              <strong>89 €/Monat</strong>
+              <span>danach Wartungs-Abo</span>
+            </div>
+          </div>
+          <a href="mailto:juwest@posteo.de?subject=Anfrage%20Paket%20Praxis" class="btn pkg-cta">Paket anfragen</a>
+        </div>
+
+      </div>
+
+      <p class="packages-note">
+        Alle Preise inkl. Hosting-Setup, Impressum &amp; Datenschutzerklärung. <strong>Kleinunternehmerregelung § 19 UStG — keine Umsatzsteuer.</strong><br>
+        Zahlung: 50 % Anzahlung bei Auftragsbestätigung · 50 % bei Live-Gang. Kündbare Wartungs-Abos nach dem Inklusiv-Zeitraum.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ===== ABLAUF ===== -->
+  <section id="ablauf">
+    <div class="container">
+
+      <div class="process-header">
+        <span class="label">Wie es funktioniert</span>
+        <div class="divider"></div>
+        <h2 class="heading-lg">Von der Anfrage<br>zur fertigen Website.</h2>
+        <p>Kein langer Briefing-Marathon, keine Überraschungen. In vier Schritten sind Sie online.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <h3>Erstgespräch</h3>
+          <p>20 Minuten Telefonat — ich höre zu, frage nach und sage offen, welches Paket zu Ihnen passt.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">02</div>
+          <h3>Angebot &amp; Vertrag</h3>
+          <p>Sie erhalten innerhalb von 24 Stunden ein klares Festpreisangebot als PDF. Keine versteckten Posten.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">03</div>
+          <h3>Aufbau</h3>
+          <p>Nach 50 % Anzahlung und Inhaltslieferung beginne ich sofort. Sie bekommen regelmäßige Zwischenstände.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">04</div>
+          <h3>Live &amp; gewartet</h3>
+          <p>Ihre Website ist online. Ich kümmere mich um Hosting, Updates und kleine Änderungen — jeden Monat.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== KONTAKT ===== -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="contact-inner">
+
+        <div class="contact-text">
+          <span class="label">Jetzt starten</span>
+          <div class="divider"></div>
+          <h2 class="heading-lg">Bereit für<br>Ihre neue Website?</h2>
+          <p>Schreiben Sie mir eine kurze Mail. Ich melde mich innerhalb eines Werktages und wir finden gemeinsam heraus, welches Paket zu Ihnen passt.</p>
+        </div>
+
+        <div class="contact-actions">
+          <a href="mailto:juwest@posteo.de?subject=Erstgesp%C3%A4ch%20Website" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="contact-link-text">
+              <strong>juwest@posteo.de</strong>
+              <span>Ich antworte innerhalb von 24 Stunden</span>
+            </div>
+          </a>
+
+          <div class="contact-hints">
+            <p>Was mir bei Ihrer Anfrage hilft:</p>
+            <ul>
+              <li><span>→</span> Was Sie beruflich machen</li>
+              <li><span>→</span> Haben Sie schon eine Website?</li>
+              <li><span>→</span> Bis wann möchten Sie online sein?</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Sandhan Design</span>
+        <div class="footer-links">
+          <button onclick="openModal('impressum')">Impressum</button>
+          <button onclick="openModal('datenschutz')">Datenschutz</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL: IMPRESSUM ===== -->
+  <div class="modal-overlay" id="modal-impressum" role="dialog" aria-modal="true" aria-labelledby="impressum-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="impressum-title">Impressum</h2>
+        <button class="modal-close" onclick="closeModal('impressum')" aria-label="Schließen">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Angaben gemäß § 5 TMG</h3>
+        <p>
+          Sandhan Design<br>
+          [Straße und Hausnummer]<br>
+          [PLZ] [Ort]<br>
+          Deutschland
+        </p>
+
+        <h3>Kontakt</h3>
+        <p>
+          E-Mail: <a href="mailto:juwest@posteo.de">juwest@posteo.de</a><br>
+          Telefon: [Ihre Telefonnummer]
+        </p>
+
+        <h3>Umsatzsteuer-Hinweis</h3>
+        <p>
+          Gemäß § 19 UStG wird keine Umsatzsteuer erhoben (Kleinunternehmerregelung). Eine Umsatzsteuer-Identifikationsnummer liegt nicht vor.
+        </p>
+
+        <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+        <p>
+          Sandhan Design<br>
+          [Straße und Hausnummer]<br>
+          [PLZ] [Ort]
+        </p>
+
+        <h3>Streitschlichtung</h3>
+        <p>
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a><br>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+
+        <h3>Haftung für Inhalte</h3>
+        <p>
+          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+        </p>
+
+        <h3>Haftung für Links</h3>
+        <p>
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+
+        <h3>Urheberrecht</h3>
+        <p>
+          Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+        </p>
+
+        <p class="modal-stamp">Stand: Mai 2026 · Bitte ergänzen Sie Ihre vollständige Adresse und Telefonnummer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: DATENSCHUTZ ===== -->
+  <div class="modal-overlay" id="modal-datenschutz" role="dialog" aria-modal="true" aria-labelledby="datenschutz-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="datenschutz-title">Datenschutzerklärung</h2>
+        <button class="modal-close" onclick="closeModal('datenschutz')" aria-label="Schließen">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>1. Datenschutz auf einen Blick</h3>
+        <p>
+          Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
+        </p>
+
+        <h3>2. Verantwortliche Stelle</h3>
+        <p>
+          Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br><br>
+          Sandhan Design<br>
+          [Straße und Hausnummer]<br>
+          [PLZ] [Ort]<br>
+          E-Mail: <a href="mailto:juwest@posteo.de">juwest@posteo.de</a>
+        </p>
+
+        <h3>3. Datenerfassung auf dieser Website</h3>
+        <p>
+          <strong>Kontaktaufnahme per E-Mail</strong><br>
+          Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben (E-Mail-Adresse, Name, Inhalt Ihrer Nachricht) zum Zweck der Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.<br><br>
+          Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung oder vorvertragliche Maßnahmen).
+        </p>
+
+        <h3>4. Server-Log-Dateien</h3>
+        <p>
+          Der Provider dieser Website erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien. Dazu gehören: Browsertyp, Betriebssystem, Referrer-URL, Hostname, Uhrzeit der Serveranfrage und IP-Adresse. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und stabilen Betrieb).
+        </p>
+
+        <h3>5. Cookies und Tracking</h3>
+        <p>
+          Diese Website verwendet keine Tracking-Cookies, keine Analyse-Tools (wie Google Analytics) und keine sozialen Plugins. Es werden ausschließlich technisch notwendige Verbindungsdaten übertragen, die nach Beendigung der Sitzung automatisch gelöscht werden.
+        </p>
+
+        <h3>6. Hosting</h3>
+        <p>
+          Diese Website wird bei einem Anbieter mit Serverstandort in der Europäischen Union gehostet. Die Datenverarbeitung erfolgt auf Basis eines Auftragsverarbeitungsvertrags gemäß Art. 28 DSGVO.
+        </p>
+
+        <h3>7. Ihre Rechte</h3>
+        <p>
+          Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft, Empfänger und den Zweck der Datenverarbeitung. Außerdem haben Sie das Recht auf Berichtigung, Einschränkung oder Löschung dieser Daten (Art. 15–18 DSGVO). Hierzu sowie zu weiteren Datenschutzfragen können Sie sich unter der im Impressum angegebenen Adresse an uns wenden.<br><br>
+          Darüber hinaus steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutz-Aufsichtsbehörde zu.
+        </p>
+
+        <h3>8. Widerspruch gegen Werbe-E-Mails</h3>
+        <p>
+          Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung wird hiermit widersprochen. Die Betreiber dieser Website behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen vor.
+        </p>
+
+        <p class="modal-stamp">Stand: Mai 2026 · Diese Datenschutzerklärung sollte vor Veröffentlichung durch einen Rechtsanwalt oder einen DSGVO-Generator (z.B. eRecht24) auf Ihre konkrete Situation angepasst werden.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal
+    function openModal(id) {
+      document.getElementById('modal-' + id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById('modal-' + id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close on backdrop click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(m => {
+          m.classList.remove('open');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth active nav
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const navObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (active) active.style.color = 'var(--text)';
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => navObs.observe(s));
+  </script>
+
+</body>
+</html>
