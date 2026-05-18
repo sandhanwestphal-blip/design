@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über uns – Sandhan Design | Jürgen, Webdesigner für Coaches & Heilpraktiker</title>
+  <meta name="description" content="Lernen Sie Jürgen kennen — den Webdesigner hinter Sandhan Design. Tiefe Branchenkenntnis aus Vertrieb, Therapie, Coaching und spiritueller Arbeit trifft auf modernstes Webdesign." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sandhan-design.de/ueber-uns.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Über Jürgen – Sandhan Design" />
+  <meta property="og:description" content="40+ Jahre Erfahrung in Coaching, Therapie und Vertrieb. Jetzt als Webdesigner für Coaches und Heilpraktiker im Einsatz." />
+  <meta property="og:url" content="https://sandhan-design.de/ueber-uns.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jürgen",
+    "jobTitle": "Webdesigner",
+    "worksFor": { "@type": "LocalBusiness", "name": "Sandhan Design" },
+    "knowsAbout": ["Webdesign", "Coaching", "Therapie", "DSGVO", "Heilpraktiker-Websites"],
+    "url": "https://sandhan-design.de/ueber-uns.html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* -------- About Styles -------- */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-16); align-items: start;
+    }
+    .about-photo {
+      position: relative; border-radius: var(--radius-xl);
+      overflow: hidden; aspect-ratio: 4/5;
+      background: var(--c-s1); border: 1px solid var(--c-border-s);
+    }
+    .about-photo__inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: var(--s-4);
+      background: linear-gradient(160deg, oklch(0.15 0.02 270), oklch(0.12 0.015 248));
+    }
+    .about-photo__initial {
+      font-family: var(--f-display); font-size: 8rem; font-weight: 800;
+      color: var(--c-a); letter-spacing: -0.05em; line-height: 1;
+      opacity: 0.9;
+    }
+    .about-photo__name {
+      font-size: var(--t-sm); color: var(--c-t2); letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600;
+    }
+    .about-photo__badge {
+      position: absolute; bottom: var(--s-6); left: var(--s-6); right: var(--s-6);
+      background: oklch(0.09 0.012 248 / 0.92); backdrop-filter: blur(12px);
+      border: 1px solid var(--c-border); border-radius: var(--radius-md);
+      padding: var(--s-4) var(--s-5);
+      display: flex; gap: var(--s-3); align-items: center;
+    }
+    .about-photo__badge-text { font-size: var(--t-sm); font-weight: 600; }
+    .about-photo__badge-text small { display: block; color: var(--c-t2); font-size: var(--t-xs); font-weight: 400; }
+
+    .about-content {}
+    .about-body { font-size: var(--t-base); color: var(--c-t2); line-height: 1.75; }
+    .about-body p + p { margin-top: var(--s-5); }
+
+    /* Timeline */
+    .timeline { margin-top: var(--s-12); }
+    .timeline-title {
+      font-family: var(--f-display); font-size: var(--t-xl); font-weight: 700;
+      letter-spacing: -0.03em; margin-bottom: var(--s-8);
+      color: var(--c-t1);
+    }
+    .timeline-items { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: var(--s-6); padding: var(--s-6) 0;
+      border-top: 1px solid var(--c-border-s);
+    }
+    .timeline-item:last-child { border-bottom: 1px solid var(--c-border-s); }
+    .timeline-item__year {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-sm); color: var(--c-a);
+      letter-spacing: 0.02em; flex-shrink: 0; min-width: 56px;
+      padding-top: 0.15rem;
+    }
+    .timeline-item__content {}
+    .timeline-item__title { font-weight: 700; font-size: var(--t-base); margin-bottom: var(--s-1); }
+    .timeline-item__desc { font-size: var(--t-sm); color: var(--c-t2); line-height: 1.55; }
+
+    /* Values */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-4);
+    }
+    .value-card {
+      background: var(--c-s1); border: 1px solid var(--c-border-s);
+      border-radius: var(--radius-lg); padding: var(--s-8);
+      transition: border-color var(--d-base), transform var(--d-base) var(--ease-quart);
+    }
+    .value-card:hover { border-color: var(--c-border); transform: translateY(-3px); }
+    .value-card__icon { font-size: 2rem; margin-bottom: var(--s-4); }
+    .value-card__title {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-xl); letter-spacing: -0.03em;
+      margin-bottom: var(--s-3);
+    }
+    .value-card__desc { font-size: var(--t-sm); color: var(--c-t2); line-height: 1.6; }
+
+    /* Skills */
+    .skills-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-8);
+    }
+    .skill-item { margin-bottom: var(--s-5); }
+    .skill-header { display: flex; justify-content: space-between; margin-bottom: var(--s-2); }
+    .skill-name { font-size: var(--t-sm); font-weight: 600; }
+    .skill-pct { font-size: var(--t-sm); color: var(--c-a); font-weight: 700; }
+    .skill-bar {
+      height: 4px; background: var(--c-s2); border-radius: 2px; overflow: hidden;
+    }
+    .skill-bar__fill {
+      height: 100%; background: var(--c-a); border-radius: 2px;
+      transform-origin: left; transform: scaleX(0);
+      transition: transform 1.2s var(--ease-expo);
+    }
+    .skill-bar__fill.animate { transform: scaleX(1); }
+
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { max-height: 360px; aspect-ratio: auto; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Eröffnungsbanner -->
+<div style="background:var(--c-a); color:var(--c-a-text); text-align:center; padding:0.55rem 1rem; font-size:var(--t-xs); font-weight:700; letter-spacing:0.06em; position:relative; z-index:1001;">
+  🎉 NEUERÖFFNUNG · Alle Pakete zum Einführungspreis &nbsp;·&nbsp; <a href="kontakt.html" style="color:var(--c-a-text); text-decoration:underline; text-underline-offset:3px;">Jetzt anfragen →</a>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" aria-label="Hauptnavigation" style="top:35px;">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">Sandhan <em>Design</em></a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html" class="active">Über uns</a></li>
+      <li><a href="dienstleistungen.html">Leistungen</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <a href="kontakt.html" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav__hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav__mobile-panel" aria-label="Mobile Navigation">
+  <a href="index.html">Start</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="dienstleistungen.html">Leistungen</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="kontakt.html" class="btn-nav-mobile">Jetzt anfragen →</a>
+</nav>
+
+<!-- =========================================================
+     PAGE HERO
+     ========================================================= -->
+<header class="page-hero" aria-labelledby="page-title">
+  <div class="container">
+    <div class="page-hero__eyebrow reveal">✦ Über Sandhan Design</div>
+    <h1 class="page-hero__title reveal reveal-delay-1" id="page-title">
+      Der Mensch<br/>hinter den Websites.
+    </h1>
+    <p class="page-hero__sub reveal reveal-delay-2">
+      Sandhan Design — frisch gestartet, mit echter Branchenkenntnis und dem Fokus auf das, was Coaches, Therapeuten und Heilpraktiker wirklich brauchen.
+    </p>
+  </div>
+</header>
+
+<!-- =========================================================
+     ABOUT MAIN
+     ========================================================= -->
+<section class="section" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <div class="about-photo__inner">
+          <div class="about-photo__initial">J</div>
+          <div class="about-photo__name">Jürgen</div>
+        </div>
+        <div class="about-photo__badge">
+          <span style="font-size:1.5rem">🧭</span>
+          <div class="about-photo__badge-text">
+            Webdesign-Spezialist
+            <small>für Coaches & Heilpraktiker</small>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label reveal">Meine Geschichte</div>
+        <h2 class="section-title reveal reveal-delay-1" id="about-heading">
+          Ich kenne beide Seiten des Tisches.
+        </h2>
+        <div class="about-body reveal reveal-delay-2">
+          <p>Ich habe in den unterschiedlichsten Rollen gelebt und gearbeitet — als Vertriebler, als Coach, als Unternehmer, als spiritueller Suchender. Ich kenne die Welt, für die ich Websites baue, nicht aus Büchern, sondern aus gelebter Erfahrung.</p>
+          <p>Als jemand, der selbst in der Therapie- und Coachingwelt verwurzelt ist, spreche ich die Sprache meiner Kunden. Ich weiß, was es bedeutet, wenn ein Heilpraktiker von seiner Methode spricht. Ich verstehe, warum ein Business-Coach Vertrauen braucht, bevor sein Gegenüber die erste Sitzung bucht. Und ich weiß, wie sich diese feinen Unterschiede in einer Website ausdrücken lassen.</p>
+          <p>Was mich als Webdesigner einzigartig macht, ist nicht nur mein technisches Handwerk — es ist das Verständnis für Menschen, für Beziehungen, für Vertrauen. Als Einzelperson mit direktem Kundenkontakt arbeite ich präzise, persönlich und ohne Umwege.</p>
+          <p>Sandhan Design ist kein Massengeschäft. Es ist eine Spezialisierung: Ich baue ausschließlich für Coaches, Therapeuten, Heilpraktiker und verwandte Berufsfelder — und ich tue es mit der Sorgfalt eines Handwerkers, der weiß, wofür seine Arbeit genutzt wird.</p>
+        </div>
+
+        <div class="timeline reveal reveal-delay-3">
+          <h3 class="timeline-title">Mein Weg</h3>
+          <div class="timeline-items">
+            <div class="timeline-item">
+              <div class="timeline-item__year">80er</div>
+              <div class="timeline-item__content">
+                <div class="timeline-item__title">Vertrieb & Unternehmertum</div>
+                <div class="timeline-item__desc">Erste Erfahrungen im nationalen und internationalen Vertrieb. Aufbau von Geschäftsnetzwerken und Verständnis für Kundenpsychologie.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__year">90er</div>
+              <div class="timeline-item__content">
+                <div class="timeline-item__title">Therapie & Persönlichkeitsentwicklung</div>
+                <div class="timeline-item__desc">Intensive Auseinandersetzung mit therapeutischen Ansätzen, spirituellen Traditionen und der Welt der Persönlichkeitsentwicklung.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__year">2000er</div>
+              <div class="timeline-item__content">
+                <div class="timeline-item__title">Coaching & Führung</div>
+                <div class="timeline-item__desc">Arbeit als Coach und Berater in verschiedenen Kontexten. Geschäftsführer-Erfahrung in internationalen Projekten, Musik und Kunst.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-item__year">2024</div>
+              <div class="timeline-item__content">
+                <div class="timeline-item__title">Sandhan Design</div>
+                <div class="timeline-item__desc">Gründung von Sandhan Design: All diese Erfahrung fließt jetzt in Websites, die wirklich für die Zielgruppe sprechen — für Coaches, Heilpraktiker und Therapeuten.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     VALUES
+     ========================================================= -->
+<section class="section section--alt" aria-labelledby="values-heading">
+  <div class="container">
+    <div class="section-label reveal">Meine Werte</div>
+    <h2 class="section-title reveal reveal-delay-1" id="values-heading">Woran ich glaube.</h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin-bottom: var(--s-12);">
+      Diese Überzeugungen leiten jedes Projekt, das Sandhan Design übernimmt — vom ersten Gespräch bis zum Launch.
+    </p>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-card__icon">🤝</div>
+        <h3 class="value-card__title">Ehrlichkeit über Verkauf</h3>
+        <p class="value-card__desc">Wenn Ihr Projekt nicht zu mir passt, sage ich das — offen und respektvoll. Ich nehme keinen Auftrag an, wenn ich nicht überzeugt bin, dass ich der richtige Anbieter bin. Das spart uns beide Zeit.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-card__icon">🎯</div>
+        <h3 class="value-card__title">Klarheit statt Komplexität</h3>
+        <p class="value-card__desc">Eine Website mit drei klar formulierten Sätzen schlägt eine Website mit zwanzig unklaren. Ich helfe Ihnen, das Wesentliche zu destillieren — die Botschaft, die wirklich bei Ihren Wunschklienten ankommt.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-card__icon">⚡</div>
+        <h3 class="value-card__title">Geschwindigkeit mit Qualität</h3>
+        <p class="value-card__desc">Als Einzelperson ohne Overhead-Strukturen arbeite ich direkt und effizient. Was in Agenturen Wochen dauert, schaffe ich in Tagen — ohne Abkürzungen beim Handwerk, ohne Qualitätsverlust.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-card__icon">🔒</div>
+        <h3 class="value-card__title">Rechtssicherheit als Standard</h3>
+        <p class="value-card__desc">DSGVO, Impressumspflicht, Heilmittelwerbegesetz — das sind keine Extras. Jede Website, die Sandhan Design ausliefert, ist rechtlich abgesichert. Ihr Schutz ist mein Anspruch.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-card__icon">🌱</div>
+        <h3 class="value-card__title">Langfristige Beziehungen</h3>
+        <p class="value-card__desc">Mein Wartungs-Abo ist kein Upsell — es ist ein echtes Angebot. Ich will meine Kunden langfristig begleiten, denn eine gute Website ist kein einmaliges Produkt, sondern ein lebendes Werkzeug.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-5">
+        <div class="value-card__icon">💬</div>
+        <h3 class="value-card__title">Direkte Kommunikation</h3>
+        <p class="value-card__desc">Keine Agentur-Hierarchien, kein Weiterreichen zwischen Account Manager und Designer. Sie sprechen immer direkt mit der Person, die Ihre Website baut. Schnell, klar, verlässlich.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SKILLS / EXPERTISE
+     ========================================================= -->
+<section class="section" aria-labelledby="skills-heading">
+  <div class="container">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--s-16); align-items:start;">
+      <div>
+        <div class="section-label reveal">Expertise</div>
+        <h2 class="section-title reveal reveal-delay-1" id="skills-heading">Was ich<br/>mitbringe.</h2>
+        <p class="section-sub reveal reveal-delay-2">
+          Technisches Know-how trifft auf menschliches Verständnis. Diese Kombination ist das Fundament jeder Website, die Sandhan Design gestaltet.
+        </p>
+        <div style="margin-top: var(--s-10);" class="reveal reveal-delay-3">
+          <p style="font-size: var(--t-sm); color: var(--c-t2); line-height:1.7;">
+            Ich arbeite mit dem modernsten Stack: <strong style="color:var(--c-t1)">Astro + Tailwind CSS</strong> für blitzschnelle, statische Websites — perfekt für Marketing und Branding. Für Kunden mit speziellen Anforderungen setze ich auf <strong style="color:var(--c-t1)">WordPress mit Bricks Builder</strong>. Sauberer Code, klare Struktur, zukunftsfähige Technik — damit Ihre Website auch in Jahren noch schnell und wartbar bleibt.
+          </p>
+        </div>
+      </div>
+      <div class="skills-grid">
+        <div class="reveal">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Webdesign & UX</span>
+              <span class="skill-pct">95%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.95" data-animate></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">DSGVO & Rechtliches</span>
+              <span class="skill-pct">90%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.9" data-animate></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Astro / HTML / CSS</span>
+              <span class="skill-pct">88%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.88" data-animate></div></div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">WordPress</span>
+              <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.85" data-animate></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">SEO Grundlagen</span>
+              <span class="skill-pct">82%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.82" data-animate></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Coaching / Branchenkenntnis</span>
+              <span class="skill-pct">99%</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar__fill" style="--w:0.99" data-animate></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA BANNER
+     ========================================================= -->
+<section class="cta-banner" aria-labelledby="cta-about-heading">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;">Nächster Schritt</div>
+    <h2 class="cta-banner__title reveal reveal-delay-1" id="cta-about-heading">
+      Lernen Sie mich persönlich kennen.
+    </h2>
+    <p class="cta-banner__sub reveal reveal-delay-2">
+      Ein 20-minütiges Gespräch reicht, um zu wissen, ob wir zusammenpassen. Keine Verpflichtung, kein Skript — nur ein ehrliches Kennenlernen.
+    </p>
+    <div class="cta-banner__actions reveal reveal-delay-3">
+      <a href="kontakt.html" class="btn btn--primary">
+        Jetzt Erstgespräch buchen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="dienstleistungen.html" class="btn btn--secondary">Leistungen ansehen</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Sandhan <em>Design</em></div>
+        <p class="footer__tagline">Professionelles Webdesign für Coaches, Therapeuten und Heilpraktiker im deutschsprachigen Raum.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="mailto:sandhanwestphal@gmail.com" aria-label="E-Mail">@</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navigation</div>
+        <ul class="footer__links">
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="dienstleistungen.html">Leistungen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Pakete</div>
+        <ul class="footer__links">
+          <li><a href="dienstleistungen.html#klar">Paket Klar — 1.490 €</a></li>
+          <li><a href="dienstleistungen.html#wirkung">Paket Wirkung — 2.490 €</a></li>
+          <li><a href="dienstleistungen.html#praxis">Paket Praxis — 3.890 €</a></li>
+          <li><a href="dienstleistungen.html#wartung">Wartungs-Abo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Kontakt</div>
+        <ul class="footer__links">
+          <li><a href="mailto:sandhanwestphal@gmail.com">sandhanwestphal@gmail.com</a></li>
+          <li><a href="kontakt.html">Erstgespräch buchen</a></li>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Sandhan Design · Jürgen · Alle Rechte vorbehalten</p>
+      <nav class="footer__legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+<script>
+  // Skill bar animation
+  const fills = document.querySelectorAll('.skill-bar__fill[data-animate]');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.transform = 'scaleX(1)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(f => obs.observe(f));
+</script>
+</body>
+</html>

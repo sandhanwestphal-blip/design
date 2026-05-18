@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – Sandhan Design | Kostenloses Erstgespräch buchen</title>
+  <meta name="description" content="Kostenloses 20-minütiges Erstgespräch mit Jürgen von Sandhan Design. Webdesign für Coaches, Therapeuten und Heilpraktiker. Schreiben Sie uns oder rufen Sie an." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://sandhan-design.de/kontakt.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kontakt – Sandhan Design" />
+  <meta property="og:description" content="Buchen Sie Ihr kostenloses Erstgespräch. 20 Minuten, kein Druck, ehrliche Beratung." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Kontakt – Sandhan Design",
+    "url": "https://sandhan-design.de/kontakt.html",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Sandhan Design",
+      "email": "sandhanwestphal@gmail.com",
+      "url": "https://sandhan-design.de",
+      "contactType": "customer service"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* -------- Contact Page Styles -------- */
+    .contact-grid {
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: var(--s-16); align-items: start;
+    }
+
+    .contact-info {}
+    .contact-info__title {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-3xl); letter-spacing: -0.04em;
+      margin-bottom: var(--s-6); line-height: 1.1;
+    }
+    .contact-info__body {
+      font-size: var(--t-base); color: var(--c-t2);
+      line-height: 1.7; margin-bottom: var(--s-8);
+    }
+    .contact-info__body p + p { margin-top: var(--s-4); }
+
+    .contact-items { display: flex; flex-direction: column; gap: var(--s-4); margin-bottom: var(--s-10); }
+    .contact-item {
+      display: flex; gap: var(--s-4); align-items: center;
+      padding: var(--s-5);
+      background: var(--c-s1); border: 1px solid var(--c-border-s);
+      border-radius: var(--radius-md);
+      transition: border-color var(--d-base), transform var(--d-fast) var(--ease-expo);
+    }
+    .contact-item:hover { border-color: var(--c-border); transform: translateX(4px); }
+    .contact-item__icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--c-a-dim); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .contact-item__label { font-size: var(--t-xs); color: var(--c-t3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.15rem; }
+    .contact-item__value { font-size: var(--t-base); font-weight: 600; color: var(--c-t1); }
+    .contact-item__value a { transition: color var(--d-fast); }
+    .contact-item__value a:hover { color: var(--c-a); }
+
+    /* Process mini */
+    .contact-process {
+      background: var(--c-s1); border: 1px solid var(--c-border-s);
+      border-radius: var(--radius-xl); padding: var(--s-8);
+    }
+    .contact-process__title {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-xl); letter-spacing: -0.03em;
+      margin-bottom: var(--s-6);
+    }
+    .contact-process__steps { display: flex; flex-direction: column; gap: var(--s-4); }
+    .contact-process__step {
+      display: flex; gap: var(--s-3); align-items: flex-start;
+    }
+    .contact-process__num {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-xl); color: var(--c-a);
+      line-height: 1; flex-shrink: 0; min-width: 1.5rem;
+    }
+    .contact-process__text { font-size: var(--t-sm); color: var(--c-t2); line-height: 1.5; padding-top: 0.1rem; }
+    .contact-process__text strong { color: var(--c-t1); }
+
+    /* Form */
+    .contact-form-card {
+      background: var(--c-s1); border: 1px solid var(--c-border-s);
+      border-radius: var(--radius-xl); padding: var(--s-10);
+    }
+    .form-title {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-2xl); letter-spacing: -0.04em;
+      margin-bottom: var(--s-2);
+    }
+    .form-subtitle { font-size: var(--t-sm); color: var(--c-t2); margin-bottom: var(--s-8); }
+
+    .form-group { margin-bottom: var(--s-5); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); margin-bottom: var(--s-5); }
+    .form-label {
+      display: block; font-size: var(--t-sm); font-weight: 600;
+      color: var(--c-t2); margin-bottom: var(--s-2); letter-spacing: 0.01em;
+    }
+    .form-label .required { color: var(--c-a); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.875rem 1rem;
+      background: var(--c-bg); border: 1.5px solid var(--c-border);
+      border-radius: var(--radius-md); color: var(--c-t1);
+      font-size: var(--t-base); font-family: var(--f-body);
+      transition: border-color var(--d-fast), box-shadow var(--d-fast);
+      outline: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--c-t3); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--c-a);
+      box-shadow: 0 0 0 3px var(--c-a-dim);
+    }
+    .form-select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px;
+      padding-right: 2.5rem;
+    }
+    .form-select option { background: var(--c-s1); color: var(--c-t1); }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+    .form-checkbox-wrap {
+      display: flex; gap: var(--s-3); align-items: flex-start;
+      margin-bottom: var(--s-6);
+    }
+    .form-checkbox {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 2px solid var(--c-border); border-radius: 4px;
+      background: var(--c-bg); cursor: pointer; margin-top: 2px;
+      accent-color: var(--c-a);
+    }
+    .form-checkbox-label { font-size: var(--t-sm); color: var(--c-t2); line-height: 1.5; }
+    .form-checkbox-label a { color: var(--c-a); text-decoration: underline; text-underline-offset: 2px; }
+
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--c-a); color: var(--c-a-text);
+      font-family: var(--f-body); font-weight: 700;
+      font-size: var(--t-base); border-radius: var(--radius-md);
+      border: none; cursor: pointer; letter-spacing: 0.01em;
+      transition: background var(--d-fast), transform var(--d-fast), box-shadow var(--d-fast);
+    }
+    .form-submit:hover {
+      background: var(--c-a2); transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--c-a-glow);
+    }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-success {
+      display: none; text-align: center; padding: var(--s-12) var(--s-8);
+    }
+    .form-success__icon { font-size: 3rem; margin-bottom: var(--s-4); }
+    .form-success__title {
+      font-family: var(--f-display); font-weight: 800;
+      font-size: var(--t-3xl); letter-spacing: -0.04em; margin-bottom: var(--s-3);
+    }
+    .form-success__text { font-size: var(--t-base); color: var(--c-t2); line-height: 1.7; }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex; gap: var(--s-8); justify-content: center; flex-wrap: wrap;
+      align-items: center; padding: var(--s-8) 0;
+    }
+    .trust-bar-item {
+      display: flex; gap: var(--s-2); align-items: center;
+      font-size: var(--t-sm); color: var(--c-t2);
+    }
+    .trust-bar-item svg { width: 16px; height: 16px; color: var(--c-a); flex-shrink: 0; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Eröffnungsbanner -->
+<div style="background:var(--c-a); color:var(--c-a-text); text-align:center; padding:0.55rem 1rem; font-size:var(--t-xs); font-weight:700; letter-spacing:0.06em; position:relative; z-index:1001;">
+  🎉 NEUERÖFFNUNG · Alle Pakete zum Einführungspreis &nbsp;·&nbsp; <a href="kontakt.html" style="color:var(--c-a-text); text-decoration:underline; text-underline-offset:3px;">Jetzt anfragen →</a>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" aria-label="Hauptnavigation" style="top:35px;">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">Sandhan <em>Design</em></a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="dienstleistungen.html">Leistungen</a></li>
+      <li><a href="kontakt.html" class="active">Kontakt</a></li>
+    </ul>
+    <a href="kontakt.html" class="btn-nav">Jetzt anfragen</a>
+    <button class="nav__hamburger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<nav class="nav__mobile-panel" aria-label="Mobile Navigation">
+  <a href="index.html">Start</a>
+  <a href="ueber-uns.html">Über uns</a>
+  <a href="dienstleistungen.html">Leistungen</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="kontakt.html" class="btn-nav-mobile">Jetzt anfragen →</a>
+</nav>
+
+<!-- =========================================================
+     PAGE HERO
+     ========================================================= -->
+<header class="page-hero" aria-labelledby="contact-page-title">
+  <div class="container">
+    <div class="page-hero__eyebrow reveal">✦ Kostenlos & unverbindlich</div>
+    <h1 class="page-hero__title reveal reveal-delay-1" id="contact-page-title">
+      Lassen Sie uns<br/>sprechen.
+    </h1>
+    <p class="page-hero__sub reveal reveal-delay-2">
+      20 Minuten reichen, um zu wissen, ob wir zusammenpassen. Kein Skript, kein Druck — nur ein ehrliches Gespräch über Ihre Website.
+    </p>
+  </div>
+</header>
+
+<!-- Trust Bar -->
+<div style="background: var(--c-s1); border-top: 1px solid var(--c-border-s); border-bottom: 1px solid var(--c-border-s);">
+  <div class="container">
+    <div class="trust-bar">
+      <div class="trust-bar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Kostenloses Erstgespräch
+      </div>
+      <div class="trust-bar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Antwort innerhalb 24 Stunden
+      </div>
+      <div class="trust-bar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Kein Druck, keine Verpflichtung
+      </div>
+      <div class="trust-bar-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        DSGVO-konforme Datenverarbeitung
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     CONTACT SECTION
+     ========================================================= -->
+<section class="section" aria-labelledby="contact-form-heading">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left: Info + Process -->
+      <div>
+        <div class="contact-info">
+          <h2 class="contact-info__title reveal" id="contact-form-heading">
+            So kommen Sie<br/>zu Ihrer Website.
+          </h2>
+          <div class="contact-info__body reveal reveal-delay-1">
+            <p>Füllen Sie das Formular aus oder schreiben Sie mir direkt eine E-Mail. Ich antworte innerhalb von 24 Stunden — meist schneller. Bei Interesse vereinbaren wir ein kurzes Telefonat, in dem ich Ihnen sage, welches Paket zu Ihrer Situation passt.</p>
+            <p>Kein Verkaufsgespräch. Keine Zahlen schönen. Wenn Ihr Projekt nicht zu mir passt, sage ich das ehrlich — und empfehle Ihnen, wo Sie besser aufgehoben sind.</p>
+          </div>
+
+          <div class="contact-items reveal reveal-delay-2">
+            <div class="contact-item">
+              <div class="contact-item__icon">✉️</div>
+              <div>
+                <div class="contact-item__label">E-Mail</div>
+                <div class="contact-item__value"><a href="mailto:sandhanwestphal@gmail.com">sandhanwestphal@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon">⏱️</div>
+              <div>
+                <div class="contact-item__label">Antwortzeit</div>
+                <div class="contact-item__value">Innerhalb von 24 Stunden</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon">🕐</div>
+              <div>
+                <div class="contact-item__label">Erstgespräch</div>
+                <div class="contact-item__value">20 Minuten, kostenlos</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item__icon">🌍</div>
+              <div>
+                <div class="contact-item__label">Bereich</div>
+                <div class="contact-item__value">Deutschland, Österreich, Schweiz</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-process reveal reveal-delay-3">
+            <h3 class="contact-process__title">Was als Nächstes passiert</h3>
+            <div class="contact-process__steps">
+              <div class="contact-process__step">
+                <div class="contact-process__num">1</div>
+                <div class="contact-process__text"><strong>Sie schreiben mir</strong> — per Formular oder direkt per E-Mail.</div>
+              </div>
+              <div class="contact-process__step">
+                <div class="contact-process__num">2</div>
+                <div class="contact-process__text"><strong>Ich antworte innerhalb 24 h</strong> und schlage einen Termin für unser Gespräch vor.</div>
+              </div>
+              <div class="contact-process__step">
+                <div class="contact-process__num">3</div>
+                <div class="contact-process__text"><strong>20-minütiges Telefonat</strong> — Sie erzählen, ich höre zu und empfehle das passende Paket.</div>
+              </div>
+              <div class="contact-process__step">
+                <div class="contact-process__num">4</div>
+                <div class="contact-process__text"><strong>Angebot innerhalb 24 h</strong> — klar, transparent, als PDF. Kein Druck auf schnelle Entscheidung.</div>
+              </div>
+              <div class="contact-process__step">
+                <div class="contact-process__num">5</div>
+                <div class="contact-process__text"><strong>Bei Zusage:</strong> Vertrag + 50% Anzahlung → Arbeit beginnt.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-card reveal reveal-delay-1">
+        <h3 class="form-title">Nachricht senden</h3>
+        <p class="form-subtitle">Alle mit <span style="color:var(--c-a)">*</span> markierten Felder sind Pflichtfelder.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div>
+              <label class="form-label" for="vorname">Vorname <span class="required">*</span></label>
+              <input class="form-input" type="text" id="vorname" name="vorname" placeholder="Max" required autocomplete="given-name" />
+            </div>
+            <div>
+              <label class="form-label" for="nachname">Nachname <span class="required">*</span></label>
+              <input class="form-input" type="text" id="nachname" name="nachname" placeholder="Mustermann" required autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">E-Mail-Adresse <span class="required">*</span></label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="max@beispiel.de" required autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="beruf">Ihre Tätigkeit</label>
+            <select class="form-select" id="beruf" name="beruf">
+              <option value="" disabled selected>Bitte wählen …</option>
+              <option value="coach">Coach</option>
+              <option value="therapeut">Therapeut / Psychologe</option>
+              <option value="heilpraktiker">Heilpraktiker</option>
+              <option value="yogalehrer">Yogalehrer / Achtsamkeit</option>
+              <option value="ernaehrung">Ernährungsberater</option>
+              <option value="spirituell">Spirituelle Arbeit / Coaching</option>
+              <option value="sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="paket">Interessantes Paket</label>
+            <select class="form-select" id="paket" name="paket">
+              <option value="" disabled selected>Bin noch unsicher …</option>
+              <option value="klar">Paket Klar — 1.490 €</option>
+              <option value="wirkung">Paket Wirkung — 2.490 €</option>
+              <option value="praxis">Paket Praxis — 3.890 €</option>
+              <option value="wartung">Nur Wartungs-Abo</option>
+              <option value="beratung">Erstmal nur beraten lassen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nachricht">Ihre Nachricht <span class="required">*</span></label>
+            <textarea class="form-textarea" id="nachricht" name="nachricht" placeholder="Erzählen Sie mir kurz, was Sie sich vorstellen — was Ihre Website leisten soll, ob Sie schon eine haben, und was Sie sich wünschen …" required></textarea>
+          </div>
+
+          <div class="form-checkbox-wrap">
+            <input class="form-checkbox" type="checkbox" id="datenschutz" name="datenschutz" required />
+            <label class="form-checkbox-label" for="datenschutz">
+              Ich habe die <a href="#">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Beantwortung meiner Anfrage zu. <span class="required" style="color:var(--c-a)">*</span>
+            </label>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Nachricht senden →
+          </button>
+
+          <p style="font-size:var(--t-xs); color:var(--c-t3); margin-top:var(--s-4); text-align:center; line-height:1.5;">
+            Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+          </p>
+        </form>
+
+        <div class="form-success" role="alert" aria-live="polite">
+          <div class="form-success__icon">✅</div>
+          <h3 class="form-success__title">Nachricht erhalten!</h3>
+          <p class="form-success__text">
+            Vielen Dank für Ihre Nachricht. Ich melde mich innerhalb von 24 Stunden bei Ihnen — meistens aber viel schneller.<br/><br/>
+            Bis gleich!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EXPECTATIONS
+     ========================================================= -->
+<section class="section section--surface" aria-labelledby="expect-heading">
+  <div class="container">
+    <div class="section-label reveal">Was Sie erwarten können</div>
+    <h2 class="section-title reveal reveal-delay-1" id="expect-heading">Mein Versprechen<br/>an Sie.</h2>
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:var(--s-4);">
+      <div style="background:var(--c-s1); border:1px solid var(--c-border-s); border-radius:var(--radius-lg); padding:var(--s-8);" class="reveal reveal-delay-1">
+        <div style="font-size:2rem; margin-bottom:var(--s-4);">⚡</div>
+        <h3 style="font-family:var(--f-display); font-weight:800; font-size:var(--t-xl); letter-spacing:-0.03em; margin-bottom:var(--s-3);">Ehrliche Antwort in 24h</h3>
+        <p style="font-size:var(--t-sm); color:var(--c-t2); line-height:1.6;">Ich antworte auf jede Anfrage. Wenn Ihr Projekt nicht zu mir passt, sage ich das — und erkläre warum.</p>
+      </div>
+      <div style="background:var(--c-s1); border:1px solid var(--c-border-s); border-radius:var(--radius-lg); padding:var(--s-8);" class="reveal reveal-delay-2">
+        <div style="font-size:2rem; margin-bottom:var(--s-4);">🤝</div>
+        <h3 style="font-family:var(--f-display); font-weight:800; font-size:var(--t-xl); letter-spacing:-0.03em; margin-bottom:var(--s-3);">Kein Druck</h3>
+        <p style="font-size:var(--t-sm); color:var(--c-t2); line-height:1.6;">Ich dränge nicht, ich bettele nicht um Aufträge. Wenn Sie das Angebot haben, entscheiden Sie in Ruhe.</p>
+      </div>
+      <div style="background:var(--c-s1); border:1px solid var(--c-border-s); border-radius:var(--radius-lg); padding:var(--s-8);" class="reveal reveal-delay-3">
+        <div style="font-size:2rem; margin-bottom:var(--s-4);">📋</div>
+        <h3 style="font-family:var(--f-display); font-weight:800; font-size:var(--t-xl); letter-spacing:-0.03em; margin-bottom:var(--s-3);">Klares Angebot</h3>
+        <p style="font-size:var(--t-sm); color:var(--c-t2); line-height:1.6;">Binnen 24 Stunden nach unserem Gespräch haben Sie ein transparentes PDF-Angebot — mit allem, was enthalten ist und was nicht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" aria-labelledby="cta-contact-heading">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center;">Noch unsicher?</div>
+    <h2 class="cta-banner__title reveal reveal-delay-1" id="cta-contact-heading">
+      Schauen Sie sich<br/>erst meine Pakete an.
+    </h2>
+    <p class="cta-banner__sub reveal reveal-delay-2">
+      Auf der Leistungsseite finden Sie alle Details zu Paketumfang, Lieferzeiten und Preisen — damit Sie genau wissen, was Sie erwartet.
+    </p>
+    <div class="cta-banner__actions reveal reveal-delay-3">
+      <a href="dienstleistungen.html" class="btn btn--primary">
+        Pakete ansehen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="ueber-uns.html" class="btn btn--secondary">Mehr über Jürgen</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Sandhan <em>Design</em></div>
+        <p class="footer__tagline">Professionelles Webdesign für Coaches, Therapeuten und Heilpraktiker im deutschsprachigen Raum.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">ig</a>
+          <a href="mailto:sandhanwestphal@gmail.com" aria-label="E-Mail">@</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navigation</div>
+        <ul class="footer__links">
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="dienstleistungen.html">Leistungen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Pakete</div>
+        <ul class="footer__links">
+          <li><a href="dienstleistungen.html#klar">Paket Klar — 1.490 €</a></li>
+          <li><a href="dienstleistungen.html#wirkung">Paket Wirkung — 2.490 €</a></li>
+          <li><a href="dienstleistungen.html#praxis">Paket Praxis — 3.890 €</a></li>
+          <li><a href="dienstleistungen.html#wartung">Wartungs-Abo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Kontakt</div>
+        <ul class="footer__links">
+          <li><a href="mailto:sandhanwestphal@gmail.com">sandhanwestphal@gmail.com</a></li>
+          <li><a href="kontakt.html">Erstgespräch buchen</a></li>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Sandhan Design · Jürgen · Alle Rechte vorbehalten</p>
+      <nav class="footer__legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
