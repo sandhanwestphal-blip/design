@@ -24,7 +24,7 @@
     "name": "Sandhan Design",
     "description": "Professionelles Webdesign für Coaches, Therapeuten und Heilpraktiker im deutschsprachigen Raum.",
     "url": "https://sandhan-design.de",
-    "telephone": "+49-XXX-XXXXXXX",
+    "telephone": "+49 171 5882385",
     "email": "sandhanwestphal@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -398,6 +398,66 @@
       .stats__grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item--3, .gallery-item--4, .gallery-item--5 { grid-column: span 12; }
     }
+
+    /* -------- Hero Photo -------- */
+    .hero__photo-wrap {
+      position: relative; width: 100%; max-width: 420px;
+    }
+    .hero__photo-wrap img {
+      width: 100%; display: block;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--c-border-s);
+      object-fit: cover; aspect-ratio: 3/4;
+      box-shadow: 0 32px 80px oklch(0 0 0 / 0.35);
+    }
+
+    /* -------- Legal Modals -------- */
+    .legal-modal {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      padding: 1rem;
+    }
+    .legal-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+    .legal-modal__overlay {
+      position: fixed; inset: 0;
+      background: oklch(0.05 0.01 248 / 0.82);
+      backdrop-filter: blur(6px); cursor: pointer;
+    }
+    .legal-modal__box {
+      position: relative; z-index: 1;
+      background: var(--c-bg, #0d1117);
+      border: 1px solid var(--c-border, rgba(255,255,255,0.1));
+      border-radius: var(--radius-xl); padding: 2.5rem 3rem;
+      max-width: 700px; width: 100%;
+      margin-top: 5vh; max-height: 88vh;
+      overflow-y: auto;
+    }
+    .legal-modal__box h2 {
+      font-family: var(--f-display); font-size: var(--t-2xl);
+      font-weight: 800; letter-spacing: -0.03em;
+      color: var(--c-t1); margin-bottom: 1.5rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--c-border-s);
+    }
+    .legal-modal__box h3 {
+      font-size: var(--t-base); font-weight: 700;
+      color: var(--c-t1); margin: 1.25rem 0 0.4rem;
+    }
+    .legal-modal__box p, .legal-modal__box li {
+      font-size: var(--t-sm); color: var(--c-t2); line-height: 1.72;
+      margin-bottom: 0.5rem;
+    }
+    .legal-modal__box a { color: var(--c-a); text-decoration: underline; text-underline-offset: 3px; }
+    .legal-modal__close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--c-s2); border: 1px solid var(--c-border-s);
+      border-radius: 50%; width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--c-t1); font-size: 1rem;
+      transition: background var(--d-fast), transform var(--d-fast);
+    }
+    .legal-modal__close:hover { background: var(--c-s3); transform: scale(1.05); }
+    @media (max-width: 600px) {
+      .legal-modal__box { padding: 2rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -410,14 +470,16 @@
 <!-- Navigation -->
 <nav class="nav" aria-label="Hauptnavigation" style="top:35px;">
   <div class="nav__inner">
-    <a href="index.html" class="nav__logo">Sandhan <em>Design</em></a>
+    <a href="index.html" class="nav__logo" style="padding:0; line-height:1;">
+      <img src="sandhan_design_logo_under_1mb.jpg" alt="Sandhan Design" style="height:52px; width:auto; display:block; border-radius:0;">
+    </a>
     <ul class="nav__links" role="list">
       <li><a href="index.html" class="active">Start</a></li>
       <li><a href="ueber-uns.html">Über uns</a></li>
       <li><a href="dienstleistungen.html">Leistungen</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
-    <a href="kontakt.html" class="btn-nav">Jetzt anfragen</a>
+    <a href="mailto:sandhanwestphal@gmail.com" class="btn-nav">Jetzt anfragen</a>
     <button class="nav__hamburger" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -430,7 +492,7 @@
   <a href="ueber-uns.html">Über uns</a>
   <a href="dienstleistungen.html">Leistungen</a>
   <a href="kontakt.html">Kontakt</a>
-  <a href="kontakt.html" class="btn-nav-mobile">Eröffnungsangebot sichern →</a>
+  <a href="mailto:sandhanwestphal@gmail.com" class="btn-nav-mobile">Erstgespräch anfragen →</a>
 </nav>
 
 <!-- =========================================================
@@ -456,7 +518,7 @@
         Ich gestalte professionelle Websites für Coaches, Therapeuten und Heilpraktiker im deutschsprachigen Raum — schnell, festpreisbasiert und von Anfang an DSGVO-konform.
       </p>
       <div class="hero__actions">
-        <a href="kontakt.html" class="btn btn--primary">
+        <a href="mailto:sandhanwestphal@gmail.com" class="btn btn--primary">
           Kostenloses Erstgespräch
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -473,12 +535,15 @@
       </div>
     </div>
 
-    <div class="hero__visual" aria-hidden="true">
-      <div class="hero__badge">
-        <div class="hero__badge-icon">⚡</div>
-        <div class="hero__badge-text">
-          5 Tage Lieferzeit
-          <small>ab Inhaltserhalt</small>
+    <div class="hero__visual">
+      <div class="hero__photo-wrap">
+        <img src="Sandhan_01.jpg" alt="Jürgen – Webdesigner bei Sandhan Design" />
+        <div class="hero__badge">
+          <div class="hero__badge-icon">⚡</div>
+          <div class="hero__badge-text">
+            5 Tage Lieferzeit
+            <small>ab Inhaltserhalt</small>
+          </div>
         </div>
       </div>
     </div>
@@ -594,14 +659,14 @@
         <span class="bento-tag" style="background:var(--c-a-dim);color:var(--c-a);border:1px solid var(--c-a);font-weight:700;">✦ Einführungspreis!</span>
         <span class="bento-tag">15 Arbeitstage</span>
       </div>
-      <!-- CTA card — span 8 to fill row after removing Wartung -->
+      <!-- CTA card -->
       <div class="bento-card reveal reveal-delay-3" style="grid-column:span 9; display:flex;align-items:flex-start;flex-direction:column;justify-content:space-between;">
         <div>
           <div class="bento-label">Ihr nächster Schritt</div>
           <h3 class="bento-title">Kostenlos<br/>beraten lassen.</h3>
           <p class="bento-desc">20 Minuten. Kein Druck. Ich höre zu und sage Ihnen ehrlich, welches Paket zu Ihrer Situation passt.</p>
         </div>
-        <a href="kontakt.html" class="btn btn--primary" style="margin-top:var(--s-6);">Gespräch anfragen →</a>
+        <a href="mailto:sandhanwestphal@gmail.com" class="btn btn--primary" style="margin-top:var(--s-6);">Gespräch anfragen →</a>
       </div>
     </div>
 
@@ -710,7 +775,7 @@
       Vereinbaren Sie ein kostenloses 20-minütiges Erstgespräch. Kein Druck, keine Verpflichtung — nur ein ehrliches Gespräch darüber, was Ihre digitale Präsenz leisten soll.
     </p>
     <div class="cta-banner__actions reveal reveal-delay-3">
-      <a href="kontakt.html" class="btn btn--primary">
+      <a href="mailto:sandhanwestphal@gmail.com" class="btn btn--primary">
         Jetzt Erstgespräch buchen
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -755,25 +820,88 @@
         <div class="footer__col-title">Kontakt</div>
         <ul class="footer__links">
           <li><a href="mailto:sandhanwestphal@gmail.com">sandhanwestphal@gmail.com</a></li>
-          <li><a href="kontakt.html">Erstgespräch buchen</a></li>
-          <li><a href="#">Impressum</a></li>
-          <li><a href="#">Datenschutz</a></li>
+          <li><a href="mailto:sandhanwestphal@gmail.com">Erstgespräch anfragen</a></li>
+          <li><a href="#" onclick="event.preventDefault();openLegalModal('impressum')">Impressum</a></li>
+          <li><a href="#" onclick="event.preventDefault();openLegalModal('datenschutz')">Datenschutz</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__copy">© 2026 Sandhan Design · Jürgen · Alle Rechte vorbehalten</p>
       <nav class="footer__legal" aria-label="Rechtliche Links">
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
-        <a href="#">AGB</a>
+        <a href="#" onclick="event.preventDefault();openLegalModal('impressum')">Impressum</a>
+        <a href="#" onclick="event.preventDefault();openLegalModal('datenschutz')">Datenschutz</a>
       </nav>
     </div>
   </div>
 </footer>
 
+<!-- =========================================================
+     IMPRESSUM MODAL
+     ========================================================= -->
+<div id="modal-impressum" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="imp-title">
+  <div class="legal-modal__overlay" onclick="closeLegalModal('impressum')"></div>
+  <div class="legal-modal__box">
+    <button class="legal-modal__close" onclick="closeLegalModal('impressum')" aria-label="Schließen">✕</button>
+    <h2 id="imp-title">Impressum</h2>
+    <h3>Angaben gemäß § 5 DDG</h3>
+    <p>Sandhan Jürgen Westphal<br>Raimundstr. 10 B<br>04177 Leipzig</p>
+    <h3>Kontakt</h3>
+    <p>Telefon: +49 171 5882385<br>E-Mail: <a href="mailto:sandhan.westphal@gmx.de">sandhan.westphal@gmx.de</a></p>
+    <h3>Hinweis zur Beratung</h3>
+    <p>Die angebotenen Leistungen sind keine medizinischen, psychotherapeutischen oder heilpraktischen Behandlungen im Sinne des deutschen Heilmittelgesetzes. Sandhan Jürgen Westphal ist weder Arzt, Psychotherapeut noch Heilpraktiker. Die Beratung basiert auf persönlicher Lebens- und Schulungserfahrung.</p>
+    <h3>Haftung für Inhalte</h3>
+    <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+    <h3>Urheberrecht</h3>
+    <p>Die durch den Seitenbetreiber erstellten Inhalte unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung und Verbreitung bedürfen der schriftlichen Zustimmung des Autors.</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     DATENSCHUTZ MODAL
+     ========================================================= -->
+<div id="modal-datenschutz" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="dsgvo-title">
+  <div class="legal-modal__overlay" onclick="closeLegalModal('datenschutz')"></div>
+  <div class="legal-modal__box">
+    <button class="legal-modal__close" onclick="closeLegalModal('datenschutz')" aria-label="Schließen">✕</button>
+    <h2 id="dsgvo-title">Datenschutzerklärung</h2>
+    <h3>1. Verantwortlicher</h3>
+    <p>Sandhan Jürgen Westphal<br>Raimundstr. 10 B, 04177 Leipzig<br>Tel.: +49 171 5882385<br>E-Mail: <a href="mailto:sandhan.westphal@gmx.de">sandhan.westphal@gmx.de</a></p>
+    <h3>2. Hosting (GitHub Pages)</h3>
+    <p>Diese Website wird über GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA – ein Unternehmen von Microsoft) betrieben. Beim Seitenaufruf übermittelt Dein Browser automatisch technische Daten (IP-Adresse, Browsertyp, Zeitstempel) an GitHub-Server. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und verfügbaren Webauftritt). Datenübertragungen in die USA erfolgen auf Basis des EU-US Data Privacy Framework (Angemessenheitsbeschluss der EU-Kommission). Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub-Datenschutzerklärung</a>.</p>
+    <h3>3. Cookies &amp; Tracking</h3>
+    <p>Es werden keine eigenen Cookies gesetzt, kein Tracking durchgeführt und keine Analysedienste eingesetzt.</p>
+    <h3>4. Kontaktformular</h3>
+    <p>Wenn Du das Kontaktformular nutzt, werden Deine Angaben (Name, E-Mail, Nachricht) ausschließlich zur Bearbeitung Deiner Anfrage verwendet (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO). Eine Weitergabe an Dritte findet nicht statt. Die Daten werden gelöscht, sobald Deine Anfrage abschließend beantwortet ist, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+    <h3>5. Schriftarten (Google Fonts)</h3>
+    <p>Diese Website lädt Schriftarten über Google Fonts (Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA). Dabei stellt Dein Browser beim Seitenaufruf eine Verbindung zu Googles Servern her; hierbei kann Deine IP-Adresse übertragen werden. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Datenübertragungen in die USA erfolgen auf Basis des EU-US Data Privacy Framework. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google-Datenschutzerklärung</a>.</p>
+    <h3>6. Deine Rechte</h3>
+    <p>Du hast gegenüber dem Verantwortlichen folgende Rechte hinsichtlich Deiner personenbezogenen Daten: Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Bei Beschwerden wende Dich an den <a href="https://www.saechsdsb.de/" target="_blank" rel="noopener">Sächsischen Datenschutzbeauftragten</a>.</p>
+    <h3>7. Stand</h3>
+    <p>Mai 2026</p>
+  </div>
+</div>
+
 <!-- Three.js for 3D Hero Animation -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="main.js" defer></script>
+<script>
+  function openLegalModal(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLegalModal(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.legal-modal.open').forEach(function(m) {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 </body>
 </html>
